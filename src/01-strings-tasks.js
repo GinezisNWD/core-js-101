@@ -235,8 +235,32 @@ function getRectangleString(width, height) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+    'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  const upperAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+    'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  let result = '';
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (alphabet.includes(str[i])) {
+      if ((alphabet.indexOf(str[i]) + 13) >= alphabet.length) {
+        result += alphabet[(alphabet.indexOf(str[i]) + 13) - alphabet.length];
+      } else {
+        result += alphabet[alphabet.indexOf(str[i]) + 13];
+      }
+    } else if (upperAlphabet.includes(str[i])) {
+      if ((upperAlphabet.indexOf(str[i]) + 13) >= upperAlphabet.length) {
+        result += upperAlphabet[(upperAlphabet.indexOf(str[i]) + 13) - upperAlphabet.length];
+      } else {
+        result += upperAlphabet[upperAlphabet.indexOf(str[i]) + 13];
+      }
+    } else {
+      result += str[i];
+    }
+  }
+
+  return result;
 }
 
 /**
@@ -252,8 +276,10 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (value === null || value === undefined) { return false; }
+  if (Object.getPrototypeOf(value) === String.prototype) { return true; }
+  return false;
 }
 
 
@@ -281,8 +307,13 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
+    'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+
+  return cards.findIndex((elem) => elem === value);
 }
 
 
