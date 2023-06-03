@@ -29,13 +29,13 @@
  *                                                    //  Ask her again.';
  */
 function willYouMarryMe(isPositiveAnswer) {
-	return new Promise((resolve, reject) => {
-		if (typeof isPositiveAnswer !== 'boolean') {
-			reject(new Error('Wrong parameter is passed! Ask her again.'));
-		}
-		if (isPositiveAnswer === true) { resolve('Hooray!!! She said "Yes"!'); }
-		if (isPositiveAnswer === false) (resolve('Oh no, she said "No".'));
-	});
+  return new Promise((resolve, reject) => {
+    if (typeof isPositiveAnswer !== 'boolean') {
+      reject(new Error('Wrong parameter is passed! Ask her again.'));
+    }
+    if (isPositiveAnswer === true) { resolve('Hooray!!! She said "Yes"!'); }
+    if (isPositiveAnswer === false) (resolve('Oh no, she said "No".'));
+  });
 }
 
 
@@ -55,7 +55,7 @@ function willYouMarryMe(isPositiveAnswer) {
  *
  */
 function processAllPromises(array) {
-	return Promise.all(array);
+  return Promise.all(array);
 }
 
 /**
@@ -78,7 +78,7 @@ function processAllPromises(array) {
  *
  */
 function getFastestPromise(array) {
-	return Promise.race(array);
+  return Promise.race(array);
 }
 
 /**
@@ -99,12 +99,12 @@ function getFastestPromise(array) {
  *
  */
 function chainPromises(/* array, action */) {
-	throw new Error('Not implemented');
+  throw new Error('Not implemented');
 }
 
 module.exports = {
-	willYouMarryMe,
-	processAllPromises,
-	getFastestPromise,
-	chainPromises,
+  willYouMarryMe,
+  processAllPromises,
+  getFastestPromise,
+  chainPromises,
 };
